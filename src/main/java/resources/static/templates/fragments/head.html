@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial scale=1.0" name="viewport"/>
+    <title>Login Workout Program Maker</title>
+    <link href="/css/about.css" rel="stylesheet">
+    <link href="/css/header.css" rel="stylesheet">
+    <link href="/css/footer.css" rel="stylesheet">
+    <link href="/css/workout-log.css" rel="stylesheet">
+    <link href="/css/exercises-log.css" rel="stylesheet">
+    <link href="/css/exercises-icons.css" rel="stylesheet">
+    <link href="/css/home-side-section.css" rel="stylesheet">
+    <link href="/css/home.css" rel="stylesheet">
+    <link href="/css/show.css" rel="stylesheet">
+    <link href="/css/workout.css" rel="stylesheet">
+    <link href="/css/stats.css" rel="stylesheet">
+    <link href="/css/responsive.css" rel="stylesheet">
+    <link href="/css/edit.css" rel="stylesheet">
+    <script src="/js/home-page.js"></script>
+    <script src="/js/create.js" type="module"></script>
+    <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/login-register.css" rel="stylesheet">
+    <link href="/css/responsive.css" rel="stylesheet">
+</head>
+<body>
+<header th:fragment="header">
+    <button class="menu" onclick="openMenu()">=</button>
+    <nav th:if="${isLogged}">
+        <h2 class="nav-name">Georgi Mihalev</h2>
+        <label class="profile-img-label">
+            <i class="fa fa-user icon fa-lg input-icon"></i>
+        </label>
+        <ul class="nav-ul">
+            <li>
+                <button>
+                    <a class="navigation-element" href="http://localhost:1111/home">Home</a>
+                </button>
+            </li>
+            <li>
+                <button onclick="openLog()">Create</button>
+            </li>
+            <li>
+                <button>
+                    <a class="navigation-element" href="http://localhost:1111/stats">Stats</a>
+                </button>
+            </li>
+            <li>
+                <button>
+                    <a class="navigation-element" href="http://localhost:1111/profile">Profile</a>
+                </button>
+            </li>
+            <li>
+                <button>
+                    <a class="navigation-element" href="http://localhost:1111/settings">Settings</a>
+                </button>
+            </li>
+            <li>
+                <button>
+                    <a class="navigation-element" href="http://localhost:1111/logout">Log out</a>
+                </button>
+            </li>
+        </ul>
+    </nav>
+    <nav th:if="${!isLogged}">
+        <section class="navsec">
+            <h2 class="navtext">Workout Program Maker</h2>
+        </section>
+        <ul class="nav-ul">
+            <li>
+                <a class="navigation-element" href="http://localhost:1111/login">Login</a>
+            </li>
+            <li>
+                <a class="navigation-element" href="http://localhost:1111/register">Register</a>
+            </li>
+            <li>
+                <a class="navigation-element" href="http://localhost:1111/about">About</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+</body>
+</html>
