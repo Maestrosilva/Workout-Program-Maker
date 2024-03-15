@@ -65,3 +65,23 @@
     padding-top: 30px;
     color: #c0b2b2;
 }
+
+body {
+    background: url("/pics/img.png") no-repeat;
+    background-size: cover;
+}
+
+main {
+    display: flex;
+    margin-bottom: 0;
+}
+
+section {
+    width: 45%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: #494949;
+}
