@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section id="exercises-section" th:fragment="create-exercise-log">
+    <label class="exit-label">
+        <button class="exit" onclick="closeExercisesLog()">
+            <label class="x-mark">X</label>
+        </button>
+    </label>
+    <div class="input-div">
+        <label class="number-of-sets-span">number of sets</label>
+        <input class="number-of-sets-input setter" max="10" min="0" type="number" value="0">
+    </div>
+    <div class="input-div">
+        <label class="kg-span">kg</label>
+        <input class="kg-input setter" max="500" min="0" step="0.1" type="number" value="0">
+    </div>
+    <div class="input-div">
+        <label class="reps-span">reps</label>
+        <input class="reps-input setter" max="200" min="0" type="number" value="0">
+    </div>
+    <section class="filters">
+        <button class="all" onclick="showAll()">All</button>
+        <button class="muscle-group" onclick="openMuscleGroupLog()">Muscle Group</button>
+        <button class="category" onclick="openCategoryLog()">Category</button>
+    </section>
+    <section class="filter-section" id="muscle-group-section">
+        <button class="muscle-group-btn" method="post" th:action="@{/home/filter/whole_body}" >WHOLE BODY</button>
+        <button class="muscle-group-btn">LEGS</button>
+        <button class="muscle-group-btn">BACK</button>
+        <button class="muscle-group-btn">CHEST</button>
+        <button class="muscle-group-btn">SHOULDERS</button>
+        <button class="muscle-group-btn">BICEPS</button>
+        <button class="muscle-group-btn">TRICEPS</button>
+        <button class="muscle-group-btn">FOREARM</button>
+        <button class="muscle-group-btn">CORE</button>
+    </section>
+    <section class="filter-section" id="category-section">
+        <button class="muscle-group-btn">PUSH</button>
+        <button class="muscle-group-btn">PULL</button>
+    </section>
+    <article class="exercises">
+        <ul class="exercises-list">
+            <li th:each="exercise : ${exercises}">
+                <label>
+                    <img th:url="{exercise.name}">
+                </label>
+                <button class="exercises-button" id="BENCH_PRESS-button">
+                    <span>BENCH PRESS</span>
+                </button>
+                <button class="show">show</button>
+            </li>
+            <li>
+                <label>
+                    <img src="/pics/bench_press-icon.png">
+                </label>
+                <button class="exercises-button" id="BENCH_PRESS-button">
+                    <span>BENCH PRESS</span>
+                </button>
+                <button class="show">show</button>
+            </li>
+            <li>
+                <label>
+                    <img src="/pics/bench_press-icon.png">
+                </label>
+                <button class="exercises-button" id="BENCH_PRESS-button">
+                    <span>BENCH PRESS</span>
+                </button>
+                <button class="show">show</button>
+            </li>
+            <li>
+                <label>
+                    <img src="/pics/bench_press-icon.png">
+                </label>
+                <button class="exercises-button" id="BENCH_PRESS-button">
+                    <span>BENCH PRESS</span>
+                </button>
+                <button class="show">show</button>
+            </li>
+            <li>
+                <label>
+                    <img src="/pics/bench_press-icon.png">
+                </label>
+                <button class="exercises-button" id="BENCH_PRESS-button">
+                    <span>BENCH PRESS</span>
+                </button>
+                <button class="show">show</button>
+            </li>
+            <li>
+                <label>
+                    <img src="/pics/bench_press-icon.png">
+                </label>
+                <button class="exercises-button" id="BENCH_PRESS-button">
+                    <span>BENCH PRESS</span>
+                </button>
+                <button class="show">show</button>
+            </li>
+            <li>
+                <label>
+                    <img src="/pics/bench_press-icon.png">
+                </label>
+                <button class="exercises-button" id="BENCH_PRESS-button">
+                    <span>BENCH PRESS</span>
+                </button>
+                <button class="show">show</button>
+            </li>
+            <li>
+                <label>
+                    <img src="/pics/bench_press-icon.png">
+                </label>
+                <button class="exercises-button" id="BENCH_PRESS-button">
+                    <span>BENCH PRESS</span>
+                </button>
+                <button class="show">show</button>
+            </li>
+            <li>
+                <label>
+                    <img src="/pics/bench_press-icon.png">
+                </label>
+                <button class="exercises-button" id="BENCH_PRESS-button">
+                    <span>BENCH PRESS</span>
+                </button>
+                <button class="show">show</button>
+            </li>
+            <li>
+                <label>
+                    <img src="/pics/bench_press-icon.png">
+                </label>
+                <button class="exercises-button" id="BENCH_PRESS-button">
+                    <span>BENCH PRESS</span>
+                </button>
+                <button class="show">show</button>
+            </li>
+            <li>
+                <label>
+                    <img src="/pics/bench_press-icon.png">
+                </label>
+                <button class="exercises-button" id="BENCH_PRESS-button">
+                    <span>BENCH PRESS</span>
+                </button>
+                <button class="show">show</button>
+            </li>
+        </ul>
+    </article>
+</section>
+</body>
+</html>
