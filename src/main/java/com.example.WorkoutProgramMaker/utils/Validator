@@ -1,0 +1,5 @@
+package com.example.WorkoutProgramMaker.utils;
+
+public interface Validator {
+    <E> boolean isValid(E entity);
+}
