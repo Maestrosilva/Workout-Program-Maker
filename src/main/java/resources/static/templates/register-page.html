@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<head th:include="fragments/head::head"></head>
+<script crossorigin='anonymous' src='https://kit.fontawesome.com/a076d05399.js'></script>
+<body>
+<header th:include="fragments/head :: header"></header>
+<section id="login-section">
+    <hr>
+    <form
+            id="login-form"
+            th:action="@{/register}"
+            th:method="post"
+            th:object="${registerDTO}">
+        <label>
+            <span>Username: </span>
+            <div class="placeholder">
+                <i class="fa fa-user icon fa-lg input-icon"></i>
+                <input
+                        class="username"
+                        placeholder="username"
+                        th:field="*{username}"
+                        type="text"
+                        required>
+                <small th:errorclass="error"
+                       th:errors="*{username}"
+                       th:if="${#fields.hasErrors('username')}">
+                    Username exists or is too short(minimum 5 symbols)</small>
+            </div>
+            <h4 class="invalid-feedback" th:if="${usedUsername}">this username already exists</h4>
+
+        </label>
+        <label>
+            <span>Email: </span>
+            <div class="placeholder">
+                <i class="fa fa-at fa-ln input-icon"></i>
+                <input class="email"
+                       placeholder="e-mail"
+                       th:field="*{email}"
+                       type="email"
+                       required>
+                <small th:errorclass="error"
+                       th:errors="*{email}"
+                       th:if="${#fields.hasErrors('email')}">
+                </small>
+            </div>
+            <h4 class="invalid-feedback" th:if="${usedEmail}">this e-mail already exists</h4>
+        </label>
+        <label>
+            <span>Age: </span>
+            <div class="placeholder">
+                <i class='fas fa-address-book'></i>
+                <input class="age"
+                       max="120"
+                       min="10"
+                       placeholder=age
+                       th:field="*{age}"
+                       type="number"
+                       required>
+                <small th:errorclass="error"
+                       th:errors="*{email}"
+                       th:if="${#fields.hasErrors('email')}">
+                </small>
+            </div>
+        </label>
+        <label>
+            <span>Password: </span>
+            <div class="placeholder">
+                <i class="fa fa-lock fa-lg input-icon"></i>
+                <input class="password"
+                       placeholder="password"
+                       th:field="*{password}"
+                       type="password"
+                       required>
+                <small th:errorclass="error"
+                       th:errors="*{password}"
+                       th:if="${#fields.hasErrors('password')}">
+                    Password is too short(minimum 5 symbols)</small>
+            </div>
+        </label>
+        <label>
+            <span>Confirm Password: </span>
+            <div class="placeholder">
+                <i class="fa fa-lock fa-lg input-icon"></i>
+                <input class="cf-password"
+                       placeholder="password"
+                       th:field="*{confirmPassword}"
+                       type="password"
+                       required>
+                <small th:errorclass="error"
+                       th:errors="*{confirmPassword}"
+                       th:if="${#fields.hasErrors('confirmPassword')}">
+                    Passwords don't match</small>
+            </div>
+            <h4 class="invalid-feedback" th:if="${differentPasswords}">the passwords are different</h4>
+        </label>
+        <div class="login">
+            <input class="submit"
+                   type="submit"
+                   value="Register">
+        </div>
+    </form>
+</section>
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>
