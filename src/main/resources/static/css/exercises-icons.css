@@ -1,0 +1,26 @@
+.exercises-list li label{
+    position: relative;
+    width: 60px;
+    height: 70px;
+    display: block;
+    padding-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.exercises-list li label img{
+    width: 100%;
+    height: 100%;
+}
+.exercises-button{
+    position: relative;
+    bottom: 70px;
+}
+.exercises-button span{
+    position: relative;
+    /*bottom: 10px;*/
+    color: rgba(144, 238, 144, 0.6);
+}
+.show{
+    position: relative;
+    bottom: 70px;
+}

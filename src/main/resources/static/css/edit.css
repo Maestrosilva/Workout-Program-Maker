@@ -1,0 +1,54 @@
+#all-wrapper{
+    display: flex;
+    justify-content: center;
+}
+#table-wrapper {
+    /*display: flex;*/
+    justify-content: center;
+    width: 65%;
+    background: rgba(133, 142, 150, 0.3);
+    /*padding: 200px;*/
+    display: grid;
+    padding-top: 200px;
+    padding-bottom: 350px;
+}
+.workout-table-edit tr td{
+    padding: 5px;
+}
+tr :nth-child(3), tr :nth-child(4), tr :nth-child(5), tr :nth-child(6){
+    width: 15%;
+}
+.workout-table-edit tr td input{
+    width: 100%;
+    background: transparent;
+    text-align: center;
+}
+.workout-table-edit tr td .edit-remove, .workout-table-edit tr td input{
+    font-size: 20px;
+    border: none !important;
+    outline:0;
+}
+
+#workout-table.workout-table-edit {
+    width: 100%;
+}
+
+.edit-remove {
+    background: red;
+    text-align: center;
+}
+td input::-webkit-outer-spin-button,
+td input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}
+.edit-form{
+    border: none;
+    display: flex;
+    justify-content: center;
+}
+.edit-save-button:hover{
+    background: lightgreen !important;
+}
+td input{
+    color: white;
+}

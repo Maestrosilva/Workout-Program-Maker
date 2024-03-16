@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/head::head"></head>
+<body>
+<header th:include="fragments/head :: header"></header>
+<main>
+    <div class="all-wrapper">
+        <section class="workout-section-wrapper">
+            <section class="workouts-section">
+                <article class="workouts-article">
+                    <h1 class="empty" th:if="${workouts.isEmpty()}">THE BOARD IS EMPTY</h1>
+                    <!--                    <h1 th:if="${workouts.isEmpty()}" class="empty">CREATE WORKOUT AND START YOUR JOURNEY</h1>-->
+                    <ul class="workout-list">
+                        <li th:each="workout: ${workouts}">
+                            <a class="workout"
+                               th:href="@{/workout/{workoutName}/{date}(workoutName = ${workout.getName()}, date = null)}"
+                               th:name="workoutName"
+                               th:text="${workout.getName()}"
+                               th:value="${workout.getName()}"></a>
+                        </li>
+                    </ul>
+                </article>
+            </section>
+        </section>
+    </div>
+    <section
+            class="create-workout-log">
+        <label class="exit-label">
+            <button class="exit" onclick="closeLog()">
+                <label class="x-mark">X</label>
+            </button>
+        </label>
+        <form
+                class="workout-log-form"
+                id="workout-log-form"
+                th:action="@{'/home/create'}"
+                th:method="post"
+                th:value="${current}">
+            <section class="name-section">
+                <label class="workout-name-label">name: </label>
+                <input class="workout-name-input"
+                       id="workout-name"
+                       type="text">
+            </section>
+            <div class="all-days">
+                <section th:class="*{name()}"
+                         th:each="day : ${days}"
+                         th:object="${day}">
+                    <button class="add"
+                            onclick="openExercisesLog(this.id)"
+                            th:id="*{name()}"
+                            th:value="*{name()}"
+                            type="button">+
+                    </button>
+                    <h2 th:text="*{name().toLowerCase()}"></h2>
+                    <article class="day">
+                        <label>
+                            <ol class="day-list" th:id="*{name()}">
+                            </ol>
+                            <img
+                                    alt=""
+                                    class="coffee"
+                                    src="/pics/cup-of-coffee.png">
+                        </label>
+                    </article>
+                </section>
+            </div>
+            <label class="save-label">
+                <input id="current" name="current" type="hidden">
+                <input id="name" name="name" type="hidden">
+                <input
+                        class="save"
+                        onclick="saveWorkout()"
+                        type="submit"
+                        value="Save"
+                >
+            </label>
+        </form>
+    </section>
+    <section id="exercises-section">
+        <label class="exit-label">
+            <button class="exit" onclick="closeExercisesLog()">
+                <label class="x-mark">X</label>
+            </button>
+        </label>
+        <div class="input-div">
+            <label class="number-of-sets-span">number of sets</label>
+            <input class="number-of-sets-input setter" max="10" min="0" type="number" value="0">
+        </div>
+        <div class="input-div">
+            <label class="kg-span">kg</label>
+            <input class="kg-input setter" max="500" min="0" step="0.1" type="number" value="0">
+        </div>
+        <div class="input-div">
+            <label class="reps-span">reps</label>
+            <input class="reps-input setter" max="200" min="0" type="number" value="0">
+        </div>
+        <section class="filters">
+            <button class="all" onclick="showAll()">All</button>
+            <button class="muscle-group" onclick="openMuscleGroupLog()">Muscle Group</button>
+            <button class="category" onclick="openCategoryLog()">Category</button>
+        </section>
+        <form class="filter-section"
+              id="muscle-group-section"
+              th:object="${exercises}">
+            <button class="muscle-group-btn"
+                    onclick="filter(this.id)"
+                    th:each="category : ${muscleGroups}"
+                    th:id="${category.name()}"
+                    th:object="${category}"
+                    th:text="*{name()}"
+                    th:value="exercises"
+                    type="submit">
+            </button>
+        </form>
+        <section class="filter-section" id="category-section">
+            <button class="muscle-group-btn">PUSH</button>
+            <button class="muscle-group-btn">PULL</button>
+        </section>
+        <article class="exercises">
+            <ul class="exercises-list">
+                <li th:each="exercise : ${exercises}" th:object="${exercise}">
+                    <label>
+                        <img th:src="*{getPictureBackgroundUrl()}">
+                    </label>
+                    <button
+                            class="exercises-button"
+                            onclick="addEX(this.id)"
+                            th:id="*{name()}"
+                            th:value="*{name().toLowerCase() + ''}">
+                        <span th:text="*{name().replaceAll('_', ' ')}"></span>
+                    </button>
+                    <button class="show"
+                            onclick="show(this.id)"
+                            th:id="*{name()}"
+                            th:value="*{getPictureShowUrl()}">show
+                    </button>
+                </li>
+            </ul>
+        </article>
+    </section>
+    <section class="show-section">
+        <button class="exit" onclick="hide()">X</button>
+        <label>
+            <img class="show-img" id="imageid">
+        </label>
+
+    </section>
+</main>
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+<script>
+    document.getElementsByClassName('create-workout-log').item(0).style.visibility = 'hidden';
+    document.getElementById('exercises-section').style.visibility = 'hidden';
+    document.getElementById('category-section').style.visibility = 'hidden';
+    document.getElementById('muscle-group-section').style.visibility = 'hidden';
+    for (const e of document.getElementsByClassName('workout')) {
+        // e.value = e.id;
+        console.log(e.value)
+    }
+</script>
+</html>

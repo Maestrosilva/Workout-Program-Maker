@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/head::head"></head>
+<body>
+<header th:include="fragments/head :: header"></header>
+<div id="all-wrapper">
+    <div id="table-wrapper">
+        <label id="workout-label"
+               th:text="${name} + ' - ' + ${day.toLowerCase()}">
+        </label>
+        <section id="workout-img"
+                 th:if="${exercises.isEmpty()}">
+            <label>
+                <img src="/pics/cup-of-coffee.png">
+            </label>
+        </section>
+        <table class="workout-table-edit" id="workout-table"
+               th:if="${!exercises.isEmpty()}">
+            <thead>
+            <tr>
+                <td></td>
+                <td>Exercise Type</td>
+                <td>Kg</td>
+                <td>Reps</td>
+                <td>Sets</td>
+                <td></td>
+            </tr>
+            </thead>
+            <tr th:block th:each="exercise : ${exercises}">
+                <td th:text="${exercise.getNumber()}"></td>
+                <td th:text="${exercise.getExerciseType().name().replaceAll('_', ' ')}">
+                    <button id="dropdown"></button>
+                </td>
+                <td>
+                    <input max="500"
+                           min="0"
+                           name="kg"
+                           step="0.1"
+                           th:value="${exercise.getKg()}"
+                           type="number">
+                </td>
+                <td>
+                    <input max="200"
+                           min="0"
+                           name="reps"
+                           th:value="${exercise.getReps()}"
+                           type="number">
+                </td>
+                <td>
+                    <input max="10"
+                           min="0"
+                           name="sets"
+                           th:value="${exercise.getNumberOfSets()}"
+                           type="number">
+                </td>
+                <form class="edit-form"
+                      th:action="@{/exercise/edit/remove/{workout}/{exercise}
+                      (exercise = ${exercise.getId()}, workout = ${workout})}"
+                      th:method="post">
+                    <td>
+                        <button class="edit-remove">X</button>
+                    </td>
+                </form>
+            </tr>
+        </table>
+        <div class="buttons-wrapper">
+            <form class="buttons" th:action="@{/home}"
+                  th:method="get">
+                <button id="home">Home</button>
+            </form>
+            <form class="buttons"
+                  th:action="@{/workout/edit/{workout}(workout = ${workout})}"
+                  th:method="post">
+                <input class="date-button"
+                       id="date-button"
+                       th:name="date"
+                       th:value="${date}"
+                       type="date">
+            </form>
+            <form class="buttons"
+                  th:action="@{/workout/{workout}(workout = ${workout})}"
+                  th:method="post">
+                <button
+                        class="edit-save-button"
+                        id="edit-workout-button"
+                        type="submit">Save
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+<script>
+    let dateButton = document.getElementsByClassName('date-button')[0];
+    dateButton.addEventListener('change', function (e) {
+        /* additional date validation here */
+        dateButton.parentNode.submit();
+    }, false);
+</script>
+</html>
